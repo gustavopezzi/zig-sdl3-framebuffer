@@ -1,0 +1,1 @@
+zig build-exe src/main.zig $(shell pkg-config --libs sdl3) -lSDL3 -lc
