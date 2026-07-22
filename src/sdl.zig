@@ -9,11 +9,7 @@ pub const Window = struct {
   renderer: *c.SDL_Renderer,
   texture: *c.SDL_Texture,
 
-  pub fn init(
-    title: [:0]const u8,
-    width: i32,
-    height: i32,
-  ) !Window {
+  pub fn init(title: [:0]const u8, width: i32, height: i32) !Window {
     if (!c.SDL_Init(c.SDL_INIT_VIDEO)) {
       return error.SDLInitFailed;
     }
@@ -63,9 +59,7 @@ pub const Window = struct {
 
   pub fn pollEvents(self: *Window) bool {
     _ = self;
-
     var event: c.SDL_Event = undefined;
-
     while (c.SDL_PollEvent(&event)) {
       if (event.type == c.SDL_EVENT_QUIT) {
         return false;
@@ -95,7 +89,6 @@ pub const Window = struct {
     )) {
       return error.RenderFailed;
     }
-
     _ = c.SDL_RenderPresent(self.renderer);
   }
 };

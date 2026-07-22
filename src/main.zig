@@ -49,12 +49,8 @@ pub fn main() !void {
     const elapsed = @as(f64, @floatFromInt(end - start)) / @as(f64, @floatFromInt(SDL.getPerformanceFrequency()));
 
     if (elapsed < target_frame_time) {
-      const seconds =
-        target_frame_time - elapsed;
-
-      const milliseconds: u32 =
-        @intFromFloat(seconds * 1000.0);
-
+      const seconds = target_frame_time - elapsed;
+      const milliseconds: u32 = @intFromFloat(seconds * 1000.0);
       if (milliseconds > 0) {
         SDL.delay(milliseconds);
       }

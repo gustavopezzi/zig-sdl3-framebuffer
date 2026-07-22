@@ -5,11 +5,7 @@ pub const Framebuffer = struct {
   height: usize,
   pixels: []u32,
 
-  pub fn init(
-    pixels: []u32,
-    width: usize,
-    height: usize,
-  ) Framebuffer {
+  pub fn init(pixels: []u32, width: usize, height: usize) Framebuffer {
     return .{
       .pixels = pixels,
       .width = width,
@@ -21,12 +17,7 @@ pub const Framebuffer = struct {
     @memset(self.pixels, color);
   }
 
-  pub fn putPixel(
-    self: *Framebuffer,
-    x: i32,
-    y: i32,
-    color: u32,
-  ) void {
+  pub fn putPixel(self: *Framebuffer, x: i32, y: i32, color: u32) void {
     if (x < 0 or y < 0) {
       return;
     }
@@ -37,10 +28,6 @@ pub const Framebuffer = struct {
   }
 };
 
-pub fn rgb(
-  r: u8,
-  g: u8,
-  b: u8,
-) u32 {
+pub fn rgb(r: u8, g: u8, b: u8) u32 {
   return (@as(u32, r) << 16) | (@as(u32, g) << 8) | @as(u32, b);
 }
