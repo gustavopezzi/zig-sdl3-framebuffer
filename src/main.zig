@@ -99,7 +99,18 @@ pub fn main() !void {
 
     clear(0x000000);
     
-    putPixel(WIDTH/2, HEIGHT/2, rgb(255, 0, 0));
+    var y: i32 = 0;
+    while (y < HEIGHT) : (y += 1) {
+      var x: i32 = 0;
+
+      while (x < WIDTH) : (x += 1) {
+        const r: u8 = @intCast((x + @as(i32, @intCast(frame))) & 255);
+        const g: u8 = @intCast((y + @as(i32, @intCast(frame))) & 255);
+        const b: u8 = @intCast((x + y + @as(i32, @intCast(frame))) & 255);
+
+        putPixel(x, y, rgb(r, g, b));
+      }
+    }
     
     frame += 1;
 
